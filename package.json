@@ -1,0 +1,24 @@
+{
+  "name": "threshold-household-mcp",
+  "version": "1.0.0",
+  "description": "A household departure orchestrator with dependency-aware plans, durable context, and reversible MCP actions.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test test/*.test.js",
+    "check": "node --check src/server.js && node --check src/household.js && node --check public/app.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.30.0",
+    "express": "^5.1.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "prettier": "3.6.2"
+  }
+}

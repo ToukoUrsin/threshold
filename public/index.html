@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f3ec" />
+    <meta
+      name="description"
+      content="A quieter, shared way out the door. Threshold keeps household context, adapts the plan, and makes every action inspectable."
+    />
+    <title>Threshold — a little less to carry</title>
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Threshold home"
+        ><span class="brand-icon">⌁</span> threshold<span class="brand-period"
+          >.</span
+        ></a
+      >
+      <div class="header-center">
+        <span class="status-dot"></span> THE CEDAR HOUSEHOLD
+      </div>
+      <div class="header-actions">
+        <span class="simulation">Alexa+ interaction simulator</span
+        ><button
+          id="inspect"
+          class="icon-button"
+          aria-label="Inspect MCP connection and receipts"
+        >
+          ↗
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="intro">
+        <div>
+          <div class="eyebrow">A SHARED MORNING, AT YOUR PACE</div>
+          <h1>A little less <em>to carry.</em></h1>
+          <p>One household. Different needs. A way forward, together.</p>
+        </div>
+        <div class="morning">
+          <span class="sun">☼</span>
+          <div>
+            <strong>08:12</strong><span>Synthetic morning rehearsal</span>
+          </div>
+        </div>
+      </section>
+      <div
+        id="announcement"
+        class="announcement"
+        role="status"
+        aria-live="polite"
+      >
+        <span class="small-orb"></span>
+        <p>
+          Let’s make the morning feel a little lighter. Tell me where we’re
+          going.
+        </p>
+        <span class="announcement-label">THRESHOLD</span>
+      </div>
+      <section class="workspace">
+        <div class="left-column">
+          <article class="home-card">
+            <div class="card-heading">
+              <div>
+                <div class="eyebrow">THE BIG PICTURE</div>
+                <h2 id="plan-title">Home, in harmony.</h2>
+              </div>
+              <span id="readiness" class="pill neutral"
+                >Ready when you are</span
+              >
+            </div>
+            <div
+              id="house-map"
+              class="house-map"
+              aria-label="Household rooms and active departure route"
+            ></div>
+            <div class="map-legend">
+              <span><i class="dot sage"></i> Alex</span
+              ><span><i class="dot clay"></i> Sam</span
+              ><span><i class="dot gold"></i> Jo</span
+              ><span class="map-hint">Every little job has a person.</span>
+            </div>
+            <div class="route-strip" id="route-strip">
+              <span class="route-icon">↗</span>
+              <div>
+                <strong>A route that remembers your needs</strong>
+                <p>Step-free exits. Quiet cues. No details to repeat.</p>
+              </div>
+            </div>
+          </article>
+          <article class="timing-card" id="timing">
+            <div class="eyebrow">ROOM TO BREATHE</div>
+            <p>Your shared timeline appears here.</p>
+          </article>
+          <div class="context-row" id="context-row"></div>
+        </div>
+        <aside class="right-column">
+          <article class="tasks-card">
+            <div class="card-heading">
+              <div>
+                <div class="eyebrow">SMALL STEPS, SHARED</div>
+                <h2 id="tasks-heading">The way out.</h2>
+              </div>
+              <span id="task-count" class="task-count">0 / 0</span>
+            </div>
+            <div id="tasks"></div>
+          </article>
+          <article class="receipt-card">
+            <div class="card-heading">
+              <div>
+                <div class="eyebrow">NOTHING HAPPENS INVISIBLY</div>
+                <h3>Leave a little trail.</h3>
+              </div>
+              <button id="all-receipts" class="text-button">Receipts ↗</button>
+            </div>
+            <div id="last-receipt" class="last-receipt">
+              Actions leave a receipt. Changes can be undone.
+            </div>
+          </article>
+        </aside>
+      </section>
+      <section class="composer-section">
+        <div class="suggestions" id="suggestions"></div>
+        <form id="command-form" class="composer">
+          <span class="composer-orb" aria-hidden="true">⌁</span
+          ><input
+            id="command"
+            aria-label="Tell Threshold what you need"
+            placeholder="Get us out the door by 08:30…"
+            maxlength="1000"
+            autocomplete="off"
+          /><button
+            id="mic"
+            type="button"
+            class="mic-button"
+            aria-label="Speak a command"
+            title="Browser speech input"
+          >
+            ♩</button
+          ><button
+            type="submit"
+            id="send"
+            class="send-button"
+            aria-label="Send request"
+          >
+            ↑
+          </button>
+        </form>
+        <div class="composer-footnote">
+          <span id="provider">Connecting to local MCP…</span
+          ><span
+            >Synthetic people & places · Virtual devices ·
+            <button id="reset">Reset rehearsal</button></span
+          >
+        </div>
+      </section>
+    </main>
+    <dialog id="inspector">
+      <div class="dialog-top">
+        <div>
+          <div class="eyebrow">THE WORK BEHIND THE CALM</div>
+          <h2>Nothing up our sleeves.</h2>
+        </div>
+        <button
+          id="close-inspector"
+          class="icon-button"
+          aria-label="Close inspector"
+        >
+          ×
+        </button>
+      </div>
+      <div class="protocol-grid">
+        <div><span>Transport</span><strong>Streamable HTTP</strong></div>
+        <div>
+          <span>Protocol</span><strong id="protocol-version">2025-11-25</strong>
+        </div>
+        <div><span>State</span><strong id="revision">Revision 0</strong></div>
+      </div>
+      <p class="inspector-note">
+        This web client calls a real MCP server. Alexa+ and physical devices are
+        simulated. The household is stored locally; optional model parsing sends
+        this synthetic context to the configured provider.
+      </p>
+      <div class="inspector-tabs">
+        <button id="receipt-tab" class="active">Action receipts</button
+        ><button id="tools-tab">MCP tools & calls</button>
+      </div>
+      <div id="inspector-content"></div>
+      <a class="download-link" id="download" download="threshold-receipts.json"
+        >Export receipt trail ↓</a
+      >
+    </dialog>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
