@@ -1,12 +1,96 @@
 import { definitions, interpretationTools } from "./tools.js";
 
+const taskReports = [
+  {
+    id: "bottle",
+    subject: /\b(bottle|water)\b/,
+    finished: /\b(filled|refilled|ready|done)\b/,
+  },
+  {
+    id: "books",
+    subject: /\bbooks\b/,
+    finished: /\b(collected|gathered|retrieved|ready|done)\b|\bpicked up\b/,
+  },
+  { id: "bag", subject: /\bbag\b/, finished: /\b(packed|ready|done)\b/ },
+  { id: "cover", subject: /\bcover\b/, finished: /\b(packed|ready|done)\b/ },
+  {
+    id: "shoes",
+    subject: /\b(shoes|outerwear)\b/,
+    finished:
+      /\b(ready|done|wearing)\b|\b(?:shoes|outerwear)\s+(?:(?:are|is)\s+)?on\b|\bput on\b/,
+  },
+  {
+    id: "keys",
+    subject: /\b(keys|cards)\b/,
+    finished:
+      /\b(got|collected|ready|done)\b|\bpicked up\b|\b(?:i|we)\s+have\b/,
+  },
+  {
+    id: "together",
+    subject: /\b(together|everyone|everybody|we)\b/,
+    finished:
+      /\btogether\b|\b(?:everyone|everybody)\s+(?:(?:is|are)\s+)?ready\b/,
+  },
+];
+const normalizeReport = (text) =>
+  text.toLowerCase().replace(/[’‘]/g, "'").trim();
+
+function explicitlyCompleted(text, state, taskId) {
+  const q = normalizeReport(text);
+  const report = taskReports.find((entry) => entry.id === taskId);
+  if (!report || !state.plan?.tasks.some((task) => task.id === taskId))
+    return false;
+  // Fail conservatively for denials, questions, future intent, and requests to do
+  // a task. A language-model proposal is not itself physical-world confirmation.
+  if (
+    /\?|\b(?:not|never|no|need|want|please|will|should|could|must|might|maybe|pretend|remind|mark|if|unless|once|until|whether|assume|assuming|expect|hope|almost|nearly|partly|partially|soon|tomorrow|later|yesterday|thinks|guess)\b|n't\b|\bgoing to\b|\blet(?:'s| us)\b/.test(
+      q,
+    )
+  )
+    return false;
+  if (
+    /^(?:is|are|have|has|did|do|does|can|could|would|should|will|when|where|why|how|what)\b/.test(
+      q,
+    )
+  )
+    return false;
+  return report.subject.test(q) && report.finished.test(q);
+}
+
+export function requireCompletionReport(text, state, proposal) {
+  if (
+    proposal.name !== "complete_task" ||
+    explicitlyCompleted(text, state, proposal.arguments?.taskId)
+  )
+    return proposal;
+  return {
+    clarification:
+      "Completion needs an explicit report. Use a direct statement such as “The books are collected”, or use its check control after completing it.",
+  };
+}
+
 export function localInterpret(text, state) {
-  const q = text.toLowerCase().trim();
+  const q = normalizeReport(text);
   const constraint = (key, value, note) => ({
     name: "update_constraint",
     arguments: { key, value, source: "User report in the rehearsal", note },
   });
   if (/^(what|why|status|are we|show|what's next)\b/.test(q))
+    return { name: "get_household", arguments: {} };
+  if (
+    state.plan &&
+    /\b(done|packed|filled|refilled|collected|gathered|retrieved|ready|got|together|wearing)\b|\bpicked up\b|\bshoes\s+(?:are\s+)?on\b/.test(
+      q,
+    )
+  ) {
+    const report = taskReports.find((entry) => entry.subject.test(q));
+    if (report)
+      return requireCompletionReport(text, state, {
+        name: "complete_task",
+        arguments: { taskId: report.id, confirmedBy: "User" },
+      });
+  }
+  if (state.plan && /\bready\b/.test(q))
     return { name: "get_household", arguments: {} };
   if (
     /\b(elevator|lift)\b/.test(q) &&
@@ -46,26 +130,6 @@ export function localInterpret(text, state) {
       name: "set_departure_cue",
       arguments: { mode: /\b(off|stop|dark)\b/.test(q) ? "off" : "warm" },
     };
-  if (
-    /\b(done|packed|filled|collected|ready|got|together)\b/.test(q) &&
-    state.plan
-  ) {
-    const matches = [
-      ["bottle", /bottle|water/],
-      ["books", /books/],
-      ["bag", /bag/],
-      ["cover", /cover/],
-      ["shoes", /shoes|outerwear/],
-      ["keys", /keys|cards/],
-      ["together", /together|everyone/],
-    ];
-    const match = matches.find(([, regex]) => regex.test(q));
-    if (match)
-      return {
-        name: "complete_task",
-        arguments: { taskId: match[0], confirmedBy: "User" },
-      };
-  }
   if (/\b(leave|library|door|plan|start|ready)\b/.test(q)) {
     const time = q.match(/\b([01]?\d|2[0-3]):([0-5]\d)\b/);
     return {
@@ -133,5 +197,11 @@ export async function interpret(
     };
   if (!definitions.some((def) => def.name === use.name))
     throw new Error("The language service selected an unsupported tool.");
-  return { name: use.name, arguments: use.input, provider: model };
+  return {
+    ...requireCompletionReport(text, state, {
+      name: use.name,
+      arguments: use.input,
+    }),
+    provider: model,
+  };
 }

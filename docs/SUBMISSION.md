@@ -22,7 +22,7 @@ The original web interface uses a calm illustrated household map, a shared task 
 
 ## Accomplishments and checks
 
-Eleven automated tests cover scheduling, dependencies, accessible-route failure, new prerequisites, safe undo, retries, persistence, Origin/Host checks, and actual official-client MCP interoperability. The filmed browser demonstration completed five real optional model requests and nine actual MCP tool calls, including elevator outage, rain, caregiver handoff, a virtual visual cue and undo. These are scoped integration checks, not a claim of real-world safety or broad language accuracy.
+Thirteen automated tests cover scheduling, dependencies, accessible-route failure, new prerequisites, safe undo, retries, persistence, completion-report rejection, Origin/Host checks, and actual official-client MCP interoperability. The filmed browser demonstration completed five real optional model requests and nine actual MCP tool calls, including elevator outage, rain, caregiver handoff, a virtual visual cue and undo. These are scoped integration checks, not a claim of real-world safety or broad language accuracy.
 
 ## What is simulated
 

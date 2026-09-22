@@ -42,6 +42,8 @@ The UI supports text, keyboard, large check controls, reduced motion, and option
 
 The no-key mode is visibly labeled **Local demo parser**. It recognizes the supported rehearsal phrases; it is not presented as model inference.
 
+Physical completion requires a direct task-specific report. Both local and optional-model proposals pass a conservative English confirmation check: negations, questions, partial progress, and future intent produce a clarification. Other wording can use the task's explicit check control. This is a bounded rehearsal-language check, not a claim of general language accuracy.
+
 To interpret more natural phrasing, provide an Anthropic API key through your environment or secret manager:
 
 ```sh
@@ -98,7 +100,7 @@ The receipt chain makes application changes inspectable and detects accidental e
 
 ## Evidence and honest limits
 
-- Eleven automated tests pass, including official MCP client interoperability, protocol negotiation, resources, Origin/Host rejection, blocked dependencies, inaccessible routes, changed prerequisites, persistence, safe undo, idempotency, and owner scheduling.
+- Thirteen automated tests pass, including official MCP client interoperability, protocol negotiation, resources, Origin/Host rejection, blocked dependencies, inaccessible routes, changed prerequisites, persistence, safe undo, idempotency, owner scheduling, and completion-report rejection.
 - The web UI was inspected in the Codex integrated browser. Elevator outage visibly selected the garden ramp; rain added a required rain-cover step and changed timing.
 - Two live optional model calls passed as described above.
 - No physical household device, Alexa account, weather service, location API, building sensor, or delivery service is connected. Sources explicitly identify fixtures and user reports.
@@ -115,4 +117,4 @@ Primary references: [Amazon hackathon rules](https://amazonappdev2026.devpost.co
 
 ## Recorded validation
 
-Eleven local tests pass. The filmed demo also completed five real optional model requests and nine MCP tool calls, including dependency progress, outage, rain, handoff, virtual cue, and undo. This is a synthetic rehearsal, not deployed household use. Hosted CI has not been verified. See the [recorded demo and captions](media/README.md).
+Thirteen local tests pass. The filmed demo also completed five real optional model requests and nine MCP tool calls, including dependency progress, outage, rain, handoff, virtual cue, and undo. This is a synthetic rehearsal, not deployed household use. Hosted CI has not been verified. See the [recorded demo and captions](media/README.md).

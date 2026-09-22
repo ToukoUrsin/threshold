@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { randomUUID, createHash } from "node:crypto";
 import { HouseholdStore } from "../src/household.js";
-import { localInterpret } from "../src/interpret.js";
+import { localInterpret, requireCompletionReport } from "../src/interpret.js";
 
 const args = (store, rest = {}) => ({
   expectedRevision: store.state.revision,
@@ -194,6 +194,12 @@ test("local parser does not reset a plan in response to readiness questions", ()
     localInterpret("Are we ready?", store.read()).name,
     "get_household",
   );
+  done(store, "books");
+  assert.equal(
+    localInterpret("I'm not ready", store.read()).name,
+    "get_household",
+  );
+  assert.equal(store.read().plan.completed, 1);
   assert.equal(
     localInterpret("The elevator is not working", store.read()).arguments.value,
     false,
@@ -206,5 +212,68 @@ test("local parser does not reset a plan in response to readiness questions", ()
   assert.equal(
     localInterpret("The books are collected", store.read()).name,
     "complete_task",
+  );
+});
+
+test("denials, incomplete progress, questions and future plans cannot complete physical tasks", () => {
+  const store = new HouseholdStore();
+  plan(store);
+  const before = store.read();
+  for (const statement of [
+    "The books are not collected",
+    "The bottle isn't filled",
+    "The bottle hasn’t been filled",
+    "Are the books collected?",
+    "Please get the bag packed",
+    "The books will be collected later",
+    "The bottle is almost filled",
+    "If the books are collected, we can leave",
+    "The bag is partly packed",
+    "I got the bag",
+    "The books are collected but the bottle is not filled",
+  ]) {
+    const result = localInterpret(statement, store.read());
+    assert.ok(result.clarification, statement);
+    assert.equal(result.name, undefined, statement);
+  }
+  assert.deepEqual(store.read(), before);
+  assert.equal(
+    localInterpret("The books are collected", store.read()).arguments.taskId,
+    "books",
+  );
+  assert.equal(
+    localInterpret("I filled the bottle", store.read()).arguments.taskId,
+    "bottle",
+  );
+  assert.equal(
+    localInterpret("The bag is packed", store.read()).arguments.taskId,
+    "bag",
+  );
+});
+
+test("optional-model completion proposals need a direct task-specific user report", () => {
+  const store = new HouseholdStore();
+  plan(store);
+  const proposal = {
+    name: "complete_task",
+    arguments: { taskId: "books", confirmedBy: "User" },
+  };
+  for (const statement of [
+    "The books aren't collected",
+    "Please collect the books",
+    "The bottle is filled",
+  ]) {
+    const checked = requireCompletionReport(statement, store.read(), proposal);
+    assert.ok(checked.clarification, statement);
+    assert.equal(checked.name, undefined, statement);
+  }
+  assert.deepEqual(
+    requireCompletionReport("The books are collected", store.read(), proposal),
+    proposal,
+  );
+  const cue = { name: "set_departure_cue", arguments: { mode: "warm" } };
+  assert.deepEqual(
+    requireCompletionReport("Turn on a quiet cue", store.read(), cue),
+    cue,
   );
 });
