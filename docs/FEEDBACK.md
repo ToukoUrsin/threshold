@@ -16,7 +16,7 @@ Feature request, **important**: a public reference client showing cards, tool fa
 
 ## Anthropic Messages API / Claude Sonnet 5
 
-Used optional live tool selection from natural-language requests, with the actual household schema. Two synthetic live checks selected the intended constraint and cue tools. The API key remains in the server process. Optional model errors are explicit and the UI's direct controls stay available. We would use it again for language flexibility while retaining deterministic domain validation. This is not an AWS integration.
+Used optional live tool selection from natural-language requests, with the actual household schema. After two initial integration checks, the filmed walkthrough completed five live model requests for outage, rain, handoff, a virtual visual cue and undo. The API key remains in the server process. Optional model errors are explicit and the UI's direct controls stay available. We would use it again for language flexibility while retaining deterministic domain validation. This is not an AWS integration.
 
 ## Express and Zod
 

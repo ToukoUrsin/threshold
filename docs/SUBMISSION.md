@@ -22,7 +22,7 @@ The original web interface uses a calm illustrated household map, a shared task 
 
 ## Accomplishments and checks
 
-Eleven automated tests cover scheduling, dependencies, accessible-route failure, new prerequisites, safe undo, retries, persistence, Origin/Host checks, and actual official-client MCP interoperability. The browser demonstration visibly replans around elevator outage and rain. Two live optional model requests correctly selected outage and visual-cue actions. These are scoped integration checks, not a claim of real-world safety or broad language accuracy.
+Eleven automated tests cover scheduling, dependencies, accessible-route failure, new prerequisites, safe undo, retries, persistence, Origin/Host checks, and actual official-client MCP interoperability. The filmed browser demonstration completed five real optional model requests and nine actual MCP tool calls, including elevator outage, rain, caregiver handoff, a virtual visual cue and undo. These are scoped integration checks, not a claim of real-world safety or broad language accuracy.
 
 ## What is simulated
 
@@ -35,7 +35,7 @@ Test the interaction with families and caregivers, add more user-authored routin
 ## Track and publication checklist
 
 - Primary track: Alexa+.
-- Repository: to be filled with the actual public MIT GitHub URL after publication.
+- Repository: https://github.com/ToukoUrsin/threshold (public, MIT).
 - Video: to be filled with a verified public YouTube or Vimeo link under three minutes.
 - Entry is newly created during the submission period; no prior project's source was reused.
 - Product feedback: `docs/FEEDBACK.md`.
