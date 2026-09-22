@@ -112,3 +112,7 @@ The receipt chain makes application changes inspectable and detects accidental e
 All original application code and illustrated SVG artwork were created for this entry. The reusable hackathon planning framework informed prioritization; no prior project's implementation or private household data was copied. See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 Primary references: [Amazon hackathon rules](https://amazonappdev2026.devpost.com/rules), [MCP 2025-11-25 Streamable HTTP](https://modelcontextprotocol.io/specification/2025-11-25/basic/transports), [official TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk), [Claude models](https://platform.claude.com/docs/en/models/overview). Requirements and model ID were checked September 21, 2026.
+
+## Recorded validation
+
+Eleven local tests pass. The filmed demo also completed five real optional model requests and nine MCP tool calls, including dependency progress, outage, rain, handoff, virtual cue, and undo. This is a synthetic rehearsal, not deployed household use. Hosted CI has not been verified. See the [recorded demo and captions](media/README.md).

@@ -1,0 +1,15 @@
+Get us out the door for the library by 08:30.
+Getting a household out the door is rarely one task. Someone carries the plan, the exceptions, and the reminders. Threshold shares that load.
+It remembers that Sam needs a step-free exit and Jo prefers a quiet cue. It gives each small job an owner and works out what can happen together.
+A plan is not proof something happened. People confirm completed tasks. The shared bag becomes available only when its prerequisites are done.
+The lift has stopped working. Find another way that keeps us step-free.
+Now real life changes. The elevator is out. Threshold moves to the garden ramp, adds the extra time, and keeps both the accessibility preference and the work already done.
+It is raining now.
+Rain adds a dependency the original plan did not have. The household cannot be marked ready until the new step is confirmed.
+Alex can take over Sam’s remaining tasks.
+A caregiver can hand over the remaining work without retelling the morning. The schedule still respects that one person cannot do two jobs at once.
+Make the hallway glow gently without a sound.
+A gentle visual cue appears on the virtual lamp. It is reversible. Every change leaves a receipt.
+Behind this simulated Alexa-plus experience is a real, self-hosted MCP server. The official SDK handles Streamable HTTP. Revisions prevent stale actions, retries do not double-execute, and context survives a restart.
+Threshold. A little less to carry, and a way forward together.
+Alexa+ interaction simulator · real MCP · synthetic household · virtual devices.

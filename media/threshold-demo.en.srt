@@ -1,0 +1,114 @@
+1
+00:00:01,550 --> 00:00:04,103
+Get us out the door for the library by 08:30.
+
+2
+00:00:04,733 --> 00:00:07,460
+Getting a household out the door is rarely one task.
+
+3
+00:00:07,831 --> 00:00:10,907
+Someone carries the plan, the exceptions, and the reminders.
+
+4
+00:00:11,655 --> 00:00:13,114
+Threshold shares that load.
+
+5
+00:00:13,791 --> 00:00:17,873
+It remembers that Sam needs a step-free exit and Jo prefers a quiet
+cue.
+
+6
+00:00:18,449 --> 00:00:21,938
+It gives each small job an owner and works out what can happen
+together.
+
+7
+00:00:22,594 --> 00:00:24,450
+A plan is not proof something happened.
+
+8
+00:00:25,468 --> 00:00:31,049
+People confirm completed tasks. The shared bag becomes available only
+when its prerequisites are done.
+
+9
+00:00:31,705 --> 00:00:35,289
+The lift has stopped working. Find another way that keeps us step-
+free.
+
+10
+00:00:35,936 --> 00:00:37,386
+Now real life changes.
+
+11
+00:00:37,884 --> 00:00:46,414
+The elevator is out. Threshold moves to the garden ramp, adds the
+extra time, and keeps both the accessibility preference and the work
+already done.
+
+12
+00:00:46,975 --> 00:00:47,869
+It is raining now.
+
+13
+00:00:48,230 --> 00:00:51,188
+Rain adds a dependency the original plan did not have.
+
+14
+00:00:51,812 --> 00:00:55,098
+The household cannot be marked ready until the new step is confirmed.
+
+15
+00:00:55,991 --> 00:00:58,339
+Alex can take over Sam’s remaining tasks.
+
+16
+00:00:58,717 --> 00:01:02,238
+A caregiver can hand over the remaining work without retelling the
+morning.
+
+17
+00:01:02,857 --> 00:01:06,610
+The schedule still respects that one person cannot do two jobs at
+once.
+
+18
+00:01:07,390 --> 00:01:09,710
+Make the hallway glow gently without a sound.
+
+19
+00:01:10,335 --> 00:01:12,850
+A gentle visual cue appears on the virtual lamp.
+
+20
+00:01:13,248 --> 00:01:15,830
+It is reversible. Every change leaves a receipt.
+
+21
+00:01:16,464 --> 00:01:21,650
+Behind this simulated Alexa-plus experience is a real, self-hosted MCP
+server.
+
+22
+00:01:22,317 --> 00:01:25,441
+The official SDK handles Streamable HTTP.
+
+23
+00:01:26,133 --> 00:01:32,072
+Revisions prevent stale actions, retries do not double-execute, and
+context survives a restart.
+
+24
+00:01:32,835 --> 00:01:33,417
+Threshold.
+
+25
+00:01:33,896 --> 00:01:39,210
+A little less to carry, and a way forward together.
+
+26
+00:01:39,673 --> 00:01:43,592
+Alexa+ interaction simulator · real MCP · synthetic household ·
+virtual devices.

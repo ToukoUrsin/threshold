@@ -5,3 +5,7 @@ data/
 !.env.example
 artifacts/
 .DS_Store
+
+media/raw/
+media/*.mp3
+media/*.mp4

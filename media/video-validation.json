@@ -1,0 +1,10 @@
+{
+  "file": "threshold-demo.mp4",
+  "sha256": "5104d8f0a1c7a4b2892ccd67c2e2e32170dfd53b8f8afd611036cc97d17631c5",
+  "bytes": 5705353,
+  "duration_seconds": 106,
+  "video": "H264 1920x1080 30fps",
+  "audio": "AAC",
+  "captions": "Embedded English mov_text plus sidecar SRT",
+  "validation": "ffprobe metadata checked; full FFmpeg decode completed without errors; actual source frames and composed frames visually inspected."
+}
