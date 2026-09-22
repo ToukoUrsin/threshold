@@ -20,4 +20,4 @@ Suggested YouTube description:
 >
 > Source code: https://github.com/ToukoUrsin/threshold
 
-Raw recordings and rendered video stay local and are excluded by the repository's existing media ignore rules. The campaign owner handles upload and submission; creation of this file does not establish either.
+[The final MP4 and captions are published in the demonstration release](https://github.com/ToukoUrsin/threshold/releases/tag/demo-2026-09-21). Raw recordings stay local and are excluded by the repository's media ignore rules. Publication of the film does not establish event submission or acceptance.

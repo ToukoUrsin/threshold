@@ -6,6 +6,10 @@ The memorable moment: the elevator breaks. Threshold keeps Sam's step-free prefe
 
 Built for the **Alexa+ track of Build, Ship, Shape: Amazon Developer Hackathon** during September 2026. This is a working web simulation backed by a real MCP server; it is not a live Alexa deployment. All people, building statuses, and device effects are synthetic.
 
+[Watch or download the 106-second demo and captions](https://github.com/ToukoUrsin/threshold/releases/tag/demo-2026-09-21)
+
+![Threshold departure plan, captured from the working prototype](media/01-plan.png)
+
 ## Run in one minute
 
 Requires Node.js 22 or newer. No API key, AWS account, hardware, or build step is required for the core demo.
